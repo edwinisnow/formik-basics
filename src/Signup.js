@@ -7,11 +7,13 @@ const Signup = () => {
             firstName: '',
             lastName: '',
             email: '',
+        },
+        onSubmit: (values) => {
+            console.log(formik.values);
         }
     })
-    console.log(formik.values);
     return (
-        <form>
+        <form onSubmit={formik.handleSubmit}>
             <div className='input-container'>
                 <input
                     id='firstName'
@@ -42,6 +44,7 @@ const Signup = () => {
                     onChange={formik.handleChange}
                 />
             </div>
+            <button type='submit'>Submit</button>
         </form>
     )
 }
