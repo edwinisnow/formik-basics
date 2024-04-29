@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useFormik } from 'formik'
 import './signup.css'
 const Signup = () => {
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [email, setEmail] = useState("")
+    const formik = useFormik({
+        initialValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+        }
+    })
+    console.log(formik.values);
     return (
         <form>
             <div className='input-container'>
@@ -12,8 +18,8 @@ const Signup = () => {
                     name='firstName'
                     type='text'
                     placeholder='First Name'
-                    value={firstName}
-                    onChange={(e => setFirstName(e.target.value))}
+                    value={formik.values.firstName}
+                    onChange={formik.handleChange}
                 />
             </div>
             <div className='input-container'>
@@ -21,19 +27,19 @@ const Signup = () => {
                     id='lastName'
                     name='lastName'
                     type='text'
-                    placeholder='last Name'
-                    value={lastName}
-                    onChange={(e => setLastName(e.target.value))}
+                    placeholder='Last Name'
+                    value={formik.values.lastName}
+                    onChange={formik.handleChange}
                 />
             </div>
             <div className='input-container'>
                 <input
                     id='email'
                     name='email'
-                    type='text'
-                    placeholder='email'
-                    value={email}
-                    onChange={(e => setEmail(e.target.value))}
+                    type='email'
+                    placeholder='Email'
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
                 />
             </div>
         </form>
